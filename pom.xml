@@ -48,7 +48,7 @@
 						<properties>
 							<anypoint.platform.client_id>${ap.client.id}</anypoint.platform.client_id>
                 			<anypoint.platform.client_secret>${ap.client.secret}</anypoint.platform.client_secret>
-							<secure.key>${decryption.key}</secure.key>
+							<key>${decryption.key}</key>
 						</properties>
 					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
@@ -71,7 +71,7 @@
 				<configuration>
 					<!-- START: MUnit coverage -->
 					<environmentVariables>
-						<secure.key>${decryption.key}</secure.key>
+						<key>${decryption.key}</key>
 					</environmentVariables>
 					<!-- END: MUnit coverage -->
 					<coverage>
