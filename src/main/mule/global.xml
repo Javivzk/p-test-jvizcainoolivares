@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
+    <http:listener-config name="p-test-jvizcainoolivares-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="${secure::http.port}" readTimeout="50000" />
+    </http:listener-config>
+    <configuration-properties doc:name="Configuration properties" doc:id="c3ca68e4-6191-475e-97f4-d053b081c546" file="properties/${env}-secure-config.yaml" />
+    <http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="3244343a-d0d9-4233-9409-d90f5be2d02b" basePath="${secure::system.basePath}">
+        <http:request-connection host="${secure::system.host}" port="${secure::system.port}" />
+        <http:default-headers>
+            <http:default-header key="client_id" value="${secure::system.credentials.client_id}" />
+            <http:default-header key="client_secret" value="${secure::system.credentials.client_secret}" />
+        </http:default-headers>
+    </http:request-config>
+    <global-property doc:name="Global Property" doc:id="b01023df-2b8b-4546-9b8b-bba2e9b17b5a" name="env" value="local" />
+    <api-gateway:autodiscovery apiId="19075046" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="39d36a96-dc62-4ffa-a353-5bd74d85165e" flowRef="p-test-jvizcainoolivares-main" />
+    <secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="a7018cdf-7761-4a41-8300-10e12c685df8" file="properties/${env}-secure-config.yaml" key="${key}">
+        <secure-properties:encrypt algorithm="Blowfish" />
+    </secure-properties:config>
+	<apikit:config name="p-test-jvizcainoolivares-config" api="resource::08bd7d47-9ba0-4e5e-be63-5938d02ae61e:p-test-jvizcainoolivares:1.0.0:raml:zip:p-test-jvizcainoolivares.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+</mule>
