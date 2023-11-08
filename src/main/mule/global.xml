@@ -18,5 +18,4 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
         <secure-properties:encrypt algorithm="Blowfish" />
     </secure-properties:config>
 	<apikit:config name="p-test-jvizcainoolivares-config" api="resource::08bd7d47-9ba0-4e5e-be63-5938d02ae61e:p-test-jvizcainoolivares:1.0.0:raml:zip:p-test-jvizcainoolivares.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-	<global-property doc:name="Global Property" doc:id="b6a97833-2b2f-46a3-8797-7ddb4c89f934" name="key" value="tururu" />
 </mule>
