@@ -1,8 +1,8 @@
-name: Build and Deploy to dev
+name: Build and Deploy to pre
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
     
